@@ -5,7 +5,7 @@ import gume.AutoGuma;
 /**
  * Klasa predstavlja Vulkanizersku Radnju
  * @author Miro Maric
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class VulkanizerskaRadnja {
 	/**

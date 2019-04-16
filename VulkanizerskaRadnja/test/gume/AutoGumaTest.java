@@ -46,10 +46,26 @@ public class AutoGumaTest {
 	public void testSetPrecnikMaliPrecnik() {
 		guma.setPrecnik(10);
 	}
+	
+	@Test(expected=java.lang.RuntimeException.class)
+	public void testSetPrecnikVelikiPrecnik() {
+		guma.setPrecnik(25);
+	}
 
 	@Test
 	public void testSetSirina() {
-		fail("Not yet implemented");
+		guma.setSirina(200);
+		assertEquals(200, guma.getSirina());
+	}
+	
+	@Test(expected = java.lang.RuntimeException.class)
+	public void testSetSirinaMalaSirina() {
+		guma.setSirina(134);
+	}
+	
+	@Test(expected = java.lang.RuntimeException.class)
+	public void testSetSirinaVelikaSirina() {
+		guma.setSirina(356);
 	}
 
 	@Test

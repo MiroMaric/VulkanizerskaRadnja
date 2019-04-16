@@ -81,7 +81,7 @@ public class AutoGuma {
 	 * sirina gume manja od 135 ili veca od 355
 	 */
 	public void setSirina(int sirina) {
-		if (sirina < 135 && sirina > 355)
+		if (sirina < 135 || sirina > 355)
 			throw new RuntimeException("Sirina van opsega");
 		this.sirina = sirina;
 	}

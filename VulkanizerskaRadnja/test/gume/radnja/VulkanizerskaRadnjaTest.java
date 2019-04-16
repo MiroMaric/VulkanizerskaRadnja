@@ -25,8 +25,64 @@ public class VulkanizerskaRadnjaTest {
 	}
 
 	@Test
-	public void testDodajGumu() {
-		
+	public void testDodajJednuGumu() {
+		AutoGuma guma = new AutoGuma();
+		guma.setMarkaModel("GoodYear");
+		guma.setPrecnik(20);
+		guma.setSirina(200);
+		guma.setVisina(50);
+		vulkanizerskaRadnja.dodajGumu(guma);
+		assertEquals(guma, vulkanizerskaRadnja.pronadjiGumu("GoodYear").getFirst());
+	}
+	
+	@Test(expected = java.lang.RuntimeException.class)
+	public void testDodajGumuNull() {
+		vulkanizerskaRadnja.dodajGumu(null);
+	}
+	
+	@Test(expected = java.lang.RuntimeException.class)
+	public void testDodajGumuIdenticanObjekat() {
+		AutoGuma guma = new AutoGuma();
+		guma.setMarkaModel("GoodYear");
+		guma.setPrecnik(20);
+		guma.setSirina(200);
+		guma.setVisina(50);
+		vulkanizerskaRadnja.dodajGumu(guma);
+		vulkanizerskaRadnja.dodajGumu(guma);
+	}
+	
+	@Test(expected = java.lang.RuntimeException.class)
+	public void testDodajGumuJednakeGume() {
+		AutoGuma guma1 = new AutoGuma();
+		guma1.setMarkaModel("GoodYear");
+		guma1.setPrecnik(20);
+		guma1.setSirina(200);
+		guma1.setVisina(50);
+		AutoGuma guma2 = new AutoGuma();
+		guma2.setMarkaModel("GoodYear");
+		guma2.setPrecnik(20);
+		guma2.setSirina(200);
+		guma2.setVisina(50);
+		vulkanizerskaRadnja.dodajGumu(guma1);
+		vulkanizerskaRadnja.dodajGumu(guma2);
+	}
+	
+	@Test
+	public void testDodajViseGuma() {
+		AutoGuma guma1 = new AutoGuma();
+		guma1.setMarkaModel("Tigar");
+		guma1.setPrecnik(20);
+		guma1.setSirina(200);
+		guma1.setVisina(50);
+		AutoGuma guma2 = new AutoGuma();
+		guma2.setMarkaModel("Tigar");
+		guma2.setPrecnik(20);
+		guma2.setSirina(200);
+		guma2.setVisina(55);
+		vulkanizerskaRadnja.dodajGumu(guma1);
+		vulkanizerskaRadnja.dodajGumu(guma2);
+		List<AutoGuma> gume = vulkanizerskaRadnja.pronadjiGumu(guma1.getMarkaModel());
+		assertEquals(2, gume.size());
 	}
 
 	@Test
@@ -48,7 +104,7 @@ public class VulkanizerskaRadnjaTest {
 	}
 	
 	@Test
-	public void testPronadjiGumuEmpty() {
+	public void testPronadjiGumuBezPodudaranja() {
 		AutoGuma guma1 = new AutoGuma();
 		guma1.setMarkaModel("GoodYear");
 		guma1.setPrecnik(20);
@@ -59,8 +115,9 @@ public class VulkanizerskaRadnjaTest {
 		guma2.setPrecnik(19);
 		guma2.setSirina(210);
 		guma2.setVisina(60);
+		vulkanizerskaRadnja.dodajGumu(guma1);
+		vulkanizerskaRadnja.dodajGumu(guma2);
 		List<AutoGuma> gume = vulkanizerskaRadnja.pronadjiGumu("gy");
 		assertTrue(gume.isEmpty());
 	}
-
 }

@@ -70,17 +70,56 @@ public class AutoGumaTest {
 
 	@Test
 	public void testSetVisina() {
-		fail("Not yet implemented");
+		guma.setVisina(50);
+		assertEquals(50, guma.getVisina());
+	}
+	
+	@Test(expected = java.lang.RuntimeException.class)
+	public void testSetVisinaMalaVisina() {
+		guma.setVisina(24);
 	}
 
+	@Test(expected = java.lang.RuntimeException.class)
+	public void testSetVisinaVelikaVisina() {
+		guma.setVisina(96);
+	}
+	
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		guma.setMarkaModel("GoodYear");
+		guma.setPrecnik(20);
+		guma.setSirina(200);
+		guma.setVisina(50);
+		String result = "AutoGuma [markaModel=GoodYear, precnik=20, sirina=200, visina=50]";
+		assertEquals(result, guma.toString());
 	}
 
 	@Test
-	public void testEqualsObject() {
-		fail("Not yet implemented");
+	public void testEqualsObjectTrue() {
+		guma.setMarkaModel("GoodYear");
+		guma.setPrecnik(20);
+		guma.setSirina(200);
+		guma.setVisina(50);
+		AutoGuma novaGuma = new AutoGuma();
+		novaGuma.setMarkaModel("GoodYear");
+		novaGuma.setPrecnik(20);
+		novaGuma.setSirina(200);
+		novaGuma.setVisina(50);
+		assertTrue(guma.equals(novaGuma));
+	}
+	
+	@Test
+	public void testEqualsObjectFalse() {
+		guma.setMarkaModel("GoodYear");
+		guma.setPrecnik(20);
+		guma.setSirina(200);
+		guma.setVisina(50);
+		AutoGuma novaGuma = new AutoGuma();
+		novaGuma.setMarkaModel("GoodYear");
+		novaGuma.setPrecnik(20);
+		novaGuma.setSirina(195);
+		novaGuma.setVisina(50);
+		assertFalse(guma.equals(novaGuma));
 	}
 
 }

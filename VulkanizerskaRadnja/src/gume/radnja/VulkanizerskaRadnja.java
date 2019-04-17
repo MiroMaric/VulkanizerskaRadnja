@@ -13,11 +13,11 @@ public class VulkanizerskaRadnja {
 	 * @see java.util.LinkedList
 	 */
 	private LinkedList<AutoGuma> gume = new LinkedList<AutoGuma>();
-
+	
 	/**
 	 * Metoda dodaje novu gumu u kolekciju gume
 	 * @param a AutoGuma koja se ubacuje u kolekciju
-	 * @throws java.lang.RuntimeException ako je nova guma null
+	 * @throws java.lang.NullPointerException ako je nova guma null
 	 * @throws java.lang.RuntimeException ako nova guma vec postoji
 	 */
 	public void dodajGumu(AutoGuma a) {

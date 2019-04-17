@@ -83,6 +83,8 @@ public class VulkanizerskaRadnjaTest {
 		vulkanizerskaRadnja.dodajGumu(guma2);
 		List<AutoGuma> gume = vulkanizerskaRadnja.pronadjiGumu(guma1.getMarkaModel());
 		assertEquals(2, gume.size());
+		assertTrue(gume.contains(guma1));
+		assertTrue(gume.contains(guma2));
 	}
 
 	@Test
